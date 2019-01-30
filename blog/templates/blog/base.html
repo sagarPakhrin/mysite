@@ -5,6 +5,7 @@
 				<meta charset="UTF-8" />
 				<meta name="viewport" content="width=device-width" />
 				<title>{% block 'title' %} {%endblock%}</title>
+				<link rel="stylesheet" href="{%static 'css/bootstrap.css'%}" type="text/css" media="screen" title="no title" charset="utf-8">
 				<!--  Bootstrap -->
 				<!-- Latest compiled and minified CSS -->
 				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -17,24 +18,24 @@
 				<link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
 		</head>
 		<body >
-				<!-- Navbar -->
+				<!-- Navbar --> 
 				<!-- custom&#45;navbar is just extra class, for just in case  -->
-				<nav class="navbar navbar-dark bg-dark techfont custom-navbar">
+				<nav class="navbar navbar-toggleable-md navbar-light fixed-top py-4 techfont custom-navbar">
 						<div class="container">
-								<ul class="nav navbar-nav">
+								<ul class="navbar-nav ml-auto">
 										<li class="nav-item"><a class="nav-link navbar-brand big-brand" href="{% url 'post_list'%}">My Blog</a> </li>
 										<li class="nav-item"><a class="nav-link"href="{% url 'about'%}">About</a> </li>
 										<li class="nav-item"><a class="nav-link"href="https://www.github.com">Github</a> </li>
 										<li class="nav-item"><a class="nav-link"href="https://www.linkedin.com">LinkedIn</a> </li>
 								</ul>
-								<ul class="nav navbar-nav navbar-right">
+								<ul class="navbar navbar-nav navbar-dark navbar-right">
 										{%if user.is_authenticated%}
 										<li> <a href="{%url 'post_new'%}">New Post</a> </li>
 										<li> <a href="{%url 'post_draft_list'%}">Drafts</a> </li>
 										<li> <a href="{%url 'logout'%}">Logout</a> </li>
 										<li> <a>Welcome: {{user.username}}</a> </li>
 										{%else%}
-										<li> <a href="{%url 'login'%}"> <span class="glyphicon glypthicon-user"></span> </a> </li>
+										<li><a href="{%url 'login'%}"> <span class="glyphicon glypthicon-user"></span> </a> </li>
 										{%endif%}
 								</ul>
 						</div>
@@ -52,10 +53,5 @@
 
 				</div>
 				<script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
-				<script>
-						var editor = new MediumEditor('.editable', { 
-								buttonLabels: 'fontawesome'
-						});
-				</script>
 		</body>
 </html>
