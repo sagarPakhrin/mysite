@@ -18,7 +18,7 @@ from django.urls import path,include
 from blog import views
 urlpatterns = [
     path('',views.PostListView.as_view(),name='post_list'),
-    path('about/',views.AboutView),
+    path('about/',views.AboutView,name='about'),
     path('post/(?P<pk>\d+)',views.PostDetailView.as_view,name='post_detail'),
     path('post/new/',views.CreatePostView.as_view,name='post_new'),
     path('post/(?P<pk>\d+)/edit',views.PostUpdateView.as_view,name='post_edit'),

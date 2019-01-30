@@ -81,9 +81,8 @@ def comment_remove(request,pk):
     comment.delete()
     return redirect('post_detail',pk=post_pk)
 
-
 @login_required
-ef post_publish(request,pk):
+def post_publish(request,pk):
     post = get_object_or_404(Post,pk=pk)
     post.publish
     return redirect('post_detail',pk=pk)
