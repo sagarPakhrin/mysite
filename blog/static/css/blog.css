@@ -1,8 +1,15 @@
+*{
+		margin:0;
+		padding:0;
+		box-sizing:border-box;
+}
+
 .techfont{
 		font-family: 'Russo One', sans-serif;
 		font-size:1.5em;
 		margin-bottom:10;
 }
+
 
 .centerstage{
 		margin:auto;

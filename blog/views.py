@@ -5,6 +5,7 @@ from blog.forms import PostForm,CommentForm
 #the reverse_lazy is to wait until the blog is deleted
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate,login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView)
 
@@ -52,6 +53,19 @@ class DraftListView(LoginRequiredMixin,ListView):
 
 ####################################################
 ####################################################
+def user_login(request):
+    context={}
+    if request.method=="POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request,username=username,password=password)
+        if user:
+            login(request,user)
+        else:
+            context["error"]= "Please provide a valid email and password"
+            return render(request,"registration/login.html",context)
+    else:
+        return render(request,"registration/login.html",context)
 @login_required
 def add_comment_to_post(request,pk):
     post = get_object_or_404(Post,pk=pk)
@@ -84,5 +98,5 @@ def comment_remove(request,pk):
 @login_required
 def post_publish(request,pk):
     post = get_object_or_404(Post,pk=pk)
-    post.publish
+    post.publish()
     return redirect('post_detail',pk=pk)
